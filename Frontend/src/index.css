@@ -3,3 +3,23 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.container{
+  width: 100%;
+}
+
+.question{
+  font-size: 20px;
+  color: black;
+  margin: 10px;
+}
+
+.quiz-heading{
+  font-size: 40px;
+  color:#0c058e;
+  margin:10px;
+}
+
+.submitquiz{
+  margin:20px;
+}
