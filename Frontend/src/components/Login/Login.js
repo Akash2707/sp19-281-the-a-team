@@ -76,7 +76,7 @@ class Login extends Component{
             <div>
                 {/* {redirectVar} */}
             <div class="container">
-                <p>Hiiii</p>
+               
                 {/* <div class="login-form">
                     <div class="main-div">
                         <div class="panel">
