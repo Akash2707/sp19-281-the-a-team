@@ -18,9 +18,11 @@ import (
 )
 
 // MongoDB Config
-var mongodb_server = "mongodb"
-var mongodb_database = "cmpe281"
-var mongodb_collection = "gumball"
+// to create new collection: connect using mongo shell: 
+// mongo ds145356.mlab.com:45356/quizzbox -u admin -p admin123
+var mongodb_server = "mongodb://admin:admin123@ds145356.mlab.com:45356/quizzbox"
+var mongodb_database = "quizzbox"
+var mongodb_collection = "quizzbox"
 
 // NewServer configures and returns a Server.
 func NewServer() *negroni.Negroni {
