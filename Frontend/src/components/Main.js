@@ -5,6 +5,8 @@ import Home from './Home/Home';
 import DocQuiz from './DocQuiz/DocQuiz';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
 import AttemptQuiz from './AttemptQuiz/AttemptQuiz';
+import QuizSelection from './CreateQuiz/QuizSelection';
+import CreateQuizAtt from './CreateQuiz/CreateQuizAtt';
 
 //Create a Main Component
 class Main extends Component {
@@ -15,7 +17,8 @@ class Main extends Component {
                 <Route path="/" component={Login}/>
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
                 <Route path="/createquiz" component={CreateQuiz}/>
-               
+               	<Route path="/selectquiz" component={QuizSelection}/>
+                <Route path="/createquizatt" component={CreateQuizAtt}/>
             </div>
         )
     }
