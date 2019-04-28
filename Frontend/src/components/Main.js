@@ -5,6 +5,8 @@ import Home from './Home/Home';
 import DocQuiz from './DocQuiz/DocQuiz';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
 import AttemptQuiz from './AttemptQuiz/AttemptQuiz';
+import QuizList from './QuizList/QuizList';
+import Navigation from './Navigation/Navigation';
 
 //Create a Main Component
 class Main extends Component {
@@ -14,6 +16,8 @@ class Main extends Component {
                 {/*Render Different Component based on Route*/}
                 <Route path="/" component={Login}/>
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
+                <Route path="/quizlist" component={QuizList}/>
+                <Route path="/" component={Navigation}/>
                
             </div>
         )
