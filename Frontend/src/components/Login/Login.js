@@ -12,6 +12,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { Link, Redirect } from "react-router-dom"
+import axios from "axios";
 
 const styles = theme => ({
   main: {
@@ -49,16 +51,13 @@ const styles = theme => ({
 function SignIn(props) {
   const { classes } = props;
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassWord] = useState("");
+  const [errm, setErrm] = useState("");
+  const [auth, setAuth] = useState(false);
 
-  function handleName(e) {
-    setName(e.target.value);
-  }
-
-  function handleEmail(e) {
-    setEmail(e.target.value);
+  function handleUsername(e) {
+    setUsername(e.target.value);
   }
 
   function handlePassword(e) {
@@ -67,7 +66,20 @@ function SignIn(props) {
 
   function handleSignup(e) {
     e.preventDefault();
-    console.log(name, email, password);
+    console.log(username, password);
+
+    let payload = {"Username": username, "Password":password};
+    const url = "/login";
+    axios.post(url, payload)
+    .then((res) => {
+      console.log(res);
+      setAuth(true);
+      //<Redirect to=""/>
+    })
+    .catch((err)=>{
+      console.log(err);
+      setErrm("*There is something wrong with the username or password.");
+    });
   }
 
   return (
@@ -78,26 +90,19 @@ function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign In
+        </Typography>
+        <Typography component="h1" variant="h5" color="error">
+          {errm}
         </Typography>
         <form className={classes.form} onSubmit={handleSignup} >
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="name">Name</InputLabel>
+            <InputLabel htmlFor="username">Username</InputLabel>
             <Input
-              id="name"
-              name="name"
-              autoComplete="name"
-              onChange={handleName}
-              autoFocus
-            />
-          </FormControl>
-          <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input
-              id="email"
-              name="email"
-              autoComplete="email"
-              onChange={handleEmail}
+              id="username"
+              name="username"
+              autoComplete="username"
+              onChange={handleUsername}
             />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
@@ -116,10 +121,23 @@ function SignIn(props) {
             variant="contained"
             color="secondary"
             className={classes.submit}
-            
           >
-            Sign up
+            Sign In
           </Button>
+          <Typography variant="subtitle1" gutterBottom>
+          Don't have an account yet?
+          </Typography>
+          <Link to="/signup">
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.Button}
+          >
+            Sign Up
+          </Button>
+          </Link>
         </form>
       </Paper>
     </main>
