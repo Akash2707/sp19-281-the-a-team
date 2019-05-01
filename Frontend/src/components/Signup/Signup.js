@@ -57,7 +57,7 @@ function SignUp(props) {
   const [errm, setErrm] = useState("");
   const [auth, setAuth] = useState(false);
 
-  const url = "/signup"
+  const url = "http://13.52.136.2:3001/signup"
   function handleName(e) {
     setName(e.target.value);
   }

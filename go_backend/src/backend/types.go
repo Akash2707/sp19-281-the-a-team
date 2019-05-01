@@ -17,14 +17,14 @@ type signup struct {
 }
 
 type gumballMachine struct {
-	Id            int
+	ID            int
 	CountGumballs int
 	ModelNumber   string
 	SerialNumber  string
 }
 
 type order struct {
-	Id          string
+	ID          string
 	OrderStatus string
 }
 

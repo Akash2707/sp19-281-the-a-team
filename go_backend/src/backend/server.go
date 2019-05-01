@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/codegangsta/negroni"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/unrolled/render"
 	"gopkg.in/mgo.v2"
@@ -20,11 +21,22 @@ import (
 // var mongodb_database = "quizzbox"
 // var mongodb_collection = "quizzbox"
 
-var mongodb_server = "localhost:27017"
-var mongodb_database = "quizbox"
-var mongodb_collection = "quizbox"
+var mongodbServer = "localhost:27017"
+var mongodbDatabase = "quizbox"
+var mongodbCollection = "quizbox"
 
 // NewServer configures and returns a Server.
+// func NewServer() *negroni.Negroni {
+// 	formatter := render.New(render.Options{
+// 		IndentJSON: true,
+// 	})
+// 	n := negroni.Classic()
+// 	mx := mux.NewRouter()
+// 	initRoutes(mx, formatter)
+// 	n.UseHandler(mx)
+// 	return n
+// }
+
 func NewServer() *negroni.Negroni {
 	formatter := render.New(render.Options{
 		IndentJSON: true,
@@ -32,7 +44,11 @@ func NewServer() *negroni.Negroni {
 	n := negroni.Classic()
 	mx := mux.NewRouter()
 	initRoutes(mx, formatter)
-	n.UseHandler(mx)
+	allowedHeaders := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
+	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "DELETE", "OPTIONS"})
+	allowedOrigins := handlers.AllowedOrigins([]string{"*"})
+
+	n.UseHandler(handlers.CORS(allowedHeaders, allowedMethods, allowedOrigins)(mx))
 	return n
 }
 
@@ -65,7 +81,7 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
 		_ = json.NewDecoder(req.Body).Decode(&info)
 		fmt.Println("Got: ", info.Username, info.Password)
 		var server mgo.DialInfo
-		server.Addrs = append(server.Addrs, mongodb_server)
+		server.Addrs = append(server.Addrs, mongodbServer)
 		fmt.Println(server.Addrs)
 		server.Timeout = 10000000000
 		server.Username = "admin"
@@ -81,7 +97,7 @@ func loginHandler(formatter *render.Render) http.HandlerFunc {
 		}
 		defer session.Close()
 		session.SetMode(mgo.Monotonic, true)
-		c := session.DB(mongodb_database).C(mongodb_collection)
+		c := session.DB(mongodbDatabase).C(mongodbCollection)
 
 		//query := bson.M{"UserName": info.UserName}
 		//change := bson.M{"$set": bson.M{"CountGumballs": m.CountGumballs}}
@@ -109,7 +125,7 @@ func signupHandler(formatter *render.Render) http.HandlerFunc {
 		_ = json.NewDecoder(req.Body).Decode(&info)
 		fmt.Println("Got: ", info.Name, info.Username, info.Password)
 		var server mgo.DialInfo
-		server.Addrs = append(server.Addrs, mongodb_server)
+		server.Addrs = append(server.Addrs, mongodbServer)
 		fmt.Println(server.Addrs)
 		server.Timeout = 10000000000
 		server.Username = "admin"
@@ -124,7 +140,7 @@ func signupHandler(formatter *render.Render) http.HandlerFunc {
 		}
 		defer session.Close()
 		session.SetMode(mgo.Monotonic, true)
-		c := session.DB(mongodb_database).C(mongodb_collection)
+		c := session.DB(mongodbDatabase).C(mongodbCollection)
 
 		//query := bson.M{"UserName": info.UserName}
 		//change := bson.M{"$set": bson.M{"CountGumballs": m.CountGumballs}}

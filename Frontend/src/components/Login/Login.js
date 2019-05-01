@@ -69,11 +69,12 @@ function SignIn(props) {
     console.log(username, password);
 
     let payload = {"Username": username, "Password":password};
-    const url = "/login";
+    const url = "http://13.52.136.2:3001/login";
     axios.post(url, payload)
     .then((res) => {
       console.log(res);
       setAuth(true);
+      localStorage.setItem("username", payload.Username);
       //<Redirect to=""/>
     })
     .catch((err)=>{
