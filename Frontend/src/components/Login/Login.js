@@ -75,12 +75,19 @@ function SignIn(props) {
       console.log(res);
       setAuth(true);
       localStorage.setItem("username", payload.Username);
-      //<Redirect to=""/>
     })
     .catch((err)=>{
       console.log(err);
       setErrm("*There is something wrong with the username or password.");
     });
+  }
+
+  if (auth) {
+    if (localStorage.getItem('username') == 'admin'){
+      return (<Redirect to="/displayquizes"/>)
+    }else{
+      return (<Redirect to="/getassignments"/>)
+    }
   }
 
   return (
