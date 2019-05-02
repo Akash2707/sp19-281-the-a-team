@@ -23,9 +23,9 @@ class QuizSelection extends Component {
                             <div className="selectquiz">
                                 <button class="btn btn-success btn-lg selection" type="submit" onClick={() => {
                                     this.props.history.push({
-                                        pathname: "/createquizatt"
+                                        pathname: "/assignment"
                                     })
-                                }}>Quiz with attachments</button>
+                                }}>Assignment</button>
                             </div>
                         </div>
                     </form>
