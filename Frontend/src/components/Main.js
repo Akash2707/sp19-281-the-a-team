@@ -17,7 +17,7 @@ class Main extends Component {
             <div>
                 {/*Render Different Component based on Route*/}
 
-                <Route path="/" component={Login}/>
+                <Route path="/login" component={Login}/>
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
                 <Route path="/createquiz" component={CreateQuiz}/>
                	<Route path="/selectquiz" component={QuizSelection}/>

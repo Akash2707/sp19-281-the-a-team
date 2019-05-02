@@ -24,7 +24,7 @@ class QuizDisplay extends Component {
 
         // axios.defaults.withCredentials = true;
 
-        axios.get("http://localhost:3000/getonewordquiz")
+        axios.get("http://34.210.207.21:3000/getonewordquiz")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)
@@ -42,7 +42,7 @@ class QuizDisplay extends Component {
                 })
             });
 
-        axios.get("http://localhost:3000/getassignment")
+        axios.get("http://34.210.207.21:3000/getassignment")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)

@@ -46,7 +46,7 @@ class Assignment extends Component {
             }
         }
         //make a post request with the user data
-        axios.post('http://localhost:3000/assignment', data, headers)
+        axios.post('http://34.210.207.21:3000/assignment', data, headers)
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {
