@@ -6,7 +6,7 @@ body {
 
 .container{
   width: 100%;
-  margin:auto;
+  margin-top: 50px;
 }
 
 .question{
@@ -27,6 +27,13 @@ body {
 
 .selectquiz{
   width: 500px;
-  margin:20px;
+  margin-top:20px;
 
 }
+
+.scoreboard{
+  font-size: 28px;
+  color:#7a0925;
+}
+
+
