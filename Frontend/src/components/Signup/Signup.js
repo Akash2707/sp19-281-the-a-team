@@ -79,7 +79,8 @@ function SignUp(props) {
     .then((res) => {
       console.log(res);
       setAuth(true);
-      
+
+
     })
     .catch((err)=>{
       console.log(err);
@@ -88,7 +89,7 @@ function SignUp(props) {
 
   }
   if (auth) {
-    return (<Redirect to="/"/>)
+    return (<Redirect to="/getassignments"/>)
   }
   return (
     <main className={classes.main}>

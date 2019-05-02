@@ -16,7 +16,8 @@ class DocQuiz extends Component {
             question2: "",
             question3: "",
             assignmentId: "",
-            assignmentName: ""
+            assignmentName: "",
+            submitted: false
         }
         //Bind the handlers to this class
         this.fileAdded = this.fileAdded.bind(this);
@@ -73,7 +74,8 @@ class DocQuiz extends Component {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {
                     this.setState({
-                        pdfMessage: response.data
+                        pdfMessage: response.data,
+                        submitted: true
                     })
                 } else {
                     this.setState({
@@ -89,6 +91,9 @@ class DocQuiz extends Component {
     }
 
     render() {
+        if(this.state.submitted == true){
+            return (<Redirect to="/getassignments"/>)
+        }
         return (
             <div>
                 <br />

@@ -27,6 +27,7 @@ import "github.com/aws/aws-sdk-go/service/s3/s3manager"
 // to create new collection: connect using mongo shell:
 // mongo ds145356.mlab.com:45356/quizzbox -u admin -p admin123
 var mongodb_server = "52.35.140.144:27017"
+var mongodb_server_1 = "52.37.128.85:27017"
 var mongodb_database = "quizzbox"
 var mongodb_collection = "assignment"
 var mongodb_collection1 = "submissions"
@@ -96,7 +97,7 @@ func getAssignmentsHandler(formatter *render.Render) http.HandlerFunc {
 		// }
 		// defer session.Close()
 		// session.SetMode(mgo.Monotonic, true)
-		session, err := mgo.Dial(mongodb_server)
+		session, err := mgo.Dial(mongodb_server_1)
 		if err != nil {
 			panic(err)
 		}

@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-import {Page, Document} from "react-pdf";
+import {Page, Document, pdfjs} from "react-pdf";
+ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 class ShowSubmittedAssignments extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class ShowSubmittedAssignments extends Component {
         super(props);
         //maintain the state required for this component
         this.state = {
-            assignmentId: "124",
+            assignmentId: "",
             submissions: [],
             errorMessage: '',
             numPages: null,
@@ -50,70 +51,88 @@ class ShowSubmittedAssignments extends Component {
 
 
     componentDidMount() {
+      console.log(this.props.location.state)
+      var assignmentID = ''
+      try {
+
+          this.setState({
+              assignmentId: this.props.location.state.assignmentId,
+          })
+          assignmentID = this.props.location.state.assignmentId
+          axios.get('http://52.33.173.178:3000/getsubmissions/' + assignmentID )
+              .then(response => {
+                  console.log("Status Code : ", response);
+                  if (response.status === 200) {
+                      this.setState({
+                          submissions: response.data,
+                      })
+                  } else {
+                      this.setState({
+                          onSuccess: false,
+                          errorMessage: "error in server"
+                      })
+                  }
+              })
+              .catch(error => {
+                  console.log(error);
+                  this.setState({
+                      onSuccess: false,
+                      errorMessage: "Internal server error"
+                  })
+              });
+
+      } catch (e) {
+          this.setState({
+              assignmentId: ""
+          })
+      }
         //make a post request with the user data
-        axios.get('http://52.33.173.178:3000/getsubmissions/124')
-            .then(response => {
-                console.log("Status Code : ", response);
-                if (response.status === 200) {
-                    this.setState({
-                        submissions: response.data,
-                    })
-                } else {
-                    this.setState({
-                        onSuccess: false,
-                        errorMessage: "error in server"
-                    })
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({
-                    onSuccess: false,
-                    errorMessage: "Internal server error"
-                })
-            });
+
     }
 
 
     render() {
-        let submissions = this.state.submissions.map(submission => {
-          let fileDisplay = null
-                      if(submission.time == this.state.fileTime && this.state.fileFlag == true){
-                          fileDisplay = (
-                              <div>
-                                  <div style={{width: 600}}>
-                                      <Document
-                                          file = {this.state.fileURL}
-                                          onLoadSuccess = {this.onDocumentLoadSuccess}
-                                      >
-                                          <Page pageNumber={this.state.pageNumber} width={600} />
-                                      </Document>
+        let submissions = null
+        if(this.state.submissions != null){
+            submissions = this.state.submissions.map(submission => {
+              let fileDisplay = null
+                          if(submission.time == this.state.fileTime && this.state.fileFlag == true){
+                              fileDisplay = (
+                                  <div>
+                                      <div style={{width: 600}}>
+                                          <Document
+                                              file = {this.state.fileURL}
+                                              onLoadSuccess = {this.onDocumentLoadSuccess}
+                                          >
+                                              <Page pageNumber={this.state.pageNumber} width={600} />
+                                          </Document>
+                                      </div>
+                                      <nav>
+                                          <button class="prev-button" onClick={this.goToPrevPage}> Prev </button>
+                                          <button class="prev-button" onClick={this.goToNextPage}> Next </button>
+                                      </nav>
+                                      <p class= "pagenumber-display">
+                                          Page {this.state.pageNumber} of {this.state.numPages}
+                                      </p>
                                   </div>
-                                  <nav>
-                                      <button class="prev-button" onClick={this.goToPrevPage}> Prev </button>
-                                      <button class="prev-button" onClick={this.goToNextPage}> Next </button>
-                                  </nav>
-                                  <p class= "pagenumber-display">
-                                      Page {this.state.pageNumber} of {this.state.numPages}
-                                  </p>
-                              </div>
-                          )
-                      }else{
-                          fileDisplay = null
-                      }
-            return (
-              <div>
-                <tr>
-                    <td>{submission.username}</td>
-                    <td>{submission.time}</td>
-                    <td><button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button></td>
-                </tr>
-                <tr>
-                  {fileDisplay}
-                </tr>
-                </div>
-            )
-        })
+                              )
+                          }else{
+                              fileDisplay = null
+                          }
+                return (
+                  <div>
+                    <tr>
+                        <td>{submission.username}</td>
+                        <td>{submission.time}</td>
+                        <td><button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button></td>
+                    </tr>
+                    <tr>
+                      {fileDisplay}
+                    </tr>
+                    </div>
+                )
+            })
+        }
 
         return (
             <div>

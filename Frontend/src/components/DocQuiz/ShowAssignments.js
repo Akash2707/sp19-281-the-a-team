@@ -56,15 +56,18 @@ class ShowAssignments extends Component {
 
 
     render() {
-        let assignments = this.state.assignments.map(assignment => {
+        let assignments = null
+        if (this.state.assignemts != []){
+            assignments = this.state.assignments.map(assignment => {
 
-            return (
-                <tr>
-                    <td>{assignment.assignmentName}</td>
-                    <td><button className="btn btn-dark" onClick={() => { this.submitAssignment(assignment) }}>Submit Assignment</button></td>
-                </tr>
-            )
-        })
+              return (
+                  <tr>
+                      <td>{assignment.assignmentName}</td>
+                      <td><button className="btn btn-dark" onClick={() => { this.submitAssignment(assignment) }}>Submit Assignment</button></td>
+                  </tr>
+              )
+            })
+        }
 
         return (
             <div>
