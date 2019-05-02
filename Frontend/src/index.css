@@ -14,12 +14,34 @@ body {
   margin: 10px;
 }
 
+.answer{
+  font-size: 20px;
+  color: black;
+  margin: 10px;
+}
+
+.title{
+  font-size: 20px;
+  color: black;
+  margin-top: 10px;
+}
+
 .quiz-heading{
   font-size: 40px;
   color:#0c058e;
   margin:10px;
+  text-align:center;
 }
 
 .submitquiz{
   margin:20px;
+}
+
+.selection{
+  width:400px;
+}
+
+.selectquiz{
+  margin:20px;
+  text-align:center;
 }
