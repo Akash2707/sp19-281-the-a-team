@@ -1,102 +1,159 @@
-import React, {Component} from 'react';
-import '../../App.css';
-import axios from 'axios';
-import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { Link, Redirect } from "react-router-dom"
+import axios from "axios";
 
-//Define a Login Component
-class Login extends Component{
-    //call the constructor method
-    constructor(props){
-        //Call the constrictor of Super class i.e The Component
-        super(props);
-        //maintain the state required for this component
-        // this.state = {
-        //     username : "",
-        //     password : "",
-        //     authFlag : false
-        // }
-        //Bind the handlers to this class
-        // this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
-        // this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
-        // this.submitLogin = this.submitLogin.bind(this);
+const styles = theme => ({
+  main: {
+    width: "auto",
+    display: "block", // Fix IE 11 issue.
+    marginLeft: theme.spacing.unit * 3,
+    marginRight: theme.spacing.unit * 3,
+    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
+      width: 400,
+      marginLeft: "auto",
+      marginRight: "auto"
     }
-    //Call the Will Mount to set the auth Flag to false
-    componentWillMount(){
-        this.setState({
-            authFlag : false
-        })
-    }
-    //username change handler to update state variable with the text entered by the user
-    // usernameChangeHandler = (e) => {
-    //     this.setState({
-    //         username : e.target.value
-    //     })
-    // }
-    //password change handler to update state variable with the text entered by the user
-    // passwordChangeHandler = (e) => {
-    //     this.setState({
-    //         password : e.target.value
-    //     })
-    // }
-    //submit Login handler to send a request to the node backend
-    // submitLogin = (e) => {
-    //     // var headers = new Headers();
-    //     //prevent page from refresh
-    //     e.preventDefault();
-    //     const data = {
-    //         username : this.state.username,
-    //         password : this.state.password
-    //     }
-    //     //set the with credentials to true
-    //     axios.defaults.withCredentials = true;
-    //     //make a post request with the user data
-    //     axios.post('http://localhost:3001/login',data)
-    //         .then(response => {
-    //             console.log("Status Code : ",response.status);
-    //             if(response.status === 200){
-    //                 this.setState({
-    //                     authFlag : true
-    //                 })
-    //             }else{
-    //                 this.setState({
-    //                     authFlag : false
-    //                 })
-    //             }
-    //         });
-    // }
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
+      .spacing.unit * 3}px`
+  },
+  avatar: {
+    margin: theme.spacing.unit,
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing.unit
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3
+  }
+});
 
-    render(){
-        //redirect based on successful login
-        // let redirectVar = null;
-        // if(cookie.load('cookie')){
-        //     redirectVar = <Redirect to= "/home"/>
-        // }
-        return(
-            <div>
-                {/* {redirectVar} */}
-            <div class="container">
-               
-                {/* <div class="login-form">
-                    <div class="main-div">
-                        <div class="panel">
-                            <h2>Admin Login</h2>
-                            <p>Please enter your username and password</p>
-                        </div>
-                        
-                            <div class="form-group">
-                                <input onChange = {this.usernameChangeHandler} type="text" class="form-control" name="username" placeholder="Username"/>
-                            </div>
-                            <div class="form-group">
-                                <input onChange = {this.passwordChangeHandler} type="password" class="form-control" name="password" placeholder="Password"/>
-                            </div>
-                            <button onClick = {this.submitLogin} class="btn btn-primary">Login</button>                 
-                    </div>
-                </div> */}
-            </div>
-            </div>
-        )
+function SignIn(props) {
+  const { classes } = props;
+
+  const [username, setUsername] = useState("");
+  const [password, setPassWord] = useState("");
+  const [errm, setErrm] = useState("");
+  const [auth, setAuth] = useState(false);
+
+  function handleUsername(e) {
+    setUsername(e.target.value);
+  }
+
+  function handlePassword(e) {
+    setPassWord(e.target.value);
+  }
+
+  function handleSignup(e) {
+    e.preventDefault();
+    console.log(username, password);
+
+    let payload = {"Username": username, "Password":password};
+    const url = "http://13.52.136.2:3001/login";
+    axios.post(url, payload)
+    .then((res) => {
+      console.log(res);
+      setAuth(true);
+      localStorage.setItem("username", payload.Username);
+    })
+    .catch((err)=>{
+      console.log(err);
+      setErrm("*There is something wrong with the username or password.");
+    });
+  }
+
+  if (auth) {
+    if (localStorage.getItem('username') == 'admin'){
+      return (<Redirect to="/displayquizes"/>)
+    }else{
+      return (<Redirect to="/getassignments"/>)
     }
+  }
+
+  return (
+    <main className={classes.main}>
+      <CssBaseline />
+      <Paper className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign In
+        </Typography>
+        <Typography component="h1" variant="h5" color="error">
+          {errm}
+        </Typography>
+        <form className={classes.form} onSubmit={handleSignup} >
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="username">Username</InputLabel>
+            <Input
+              id="username"
+              name="username"
+              autoComplete="username"
+              onChange={handleUsername}
+            />
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={handlePassword}
+            />
+          </FormControl>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Typography variant="subtitle1" gutterBottom>
+          Don't have an account yet?
+          </Typography>
+          <Link to="/signup">
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.Button}
+          >
+            Sign Up
+          </Button>
+          </Link>
+        </form>
+      </Paper>
+    </main>
+  );
 }
-//export Login Component
-export default Login;
+
+SignIn.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(SignIn);
