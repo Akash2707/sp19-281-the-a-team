@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Login from './Login/Login';
+import SignUp from "./Signup/Signup"
 import Home from './Home/Home';
 import DocQuiz from './DocQuiz/DocQuiz';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
@@ -15,12 +16,18 @@ class Main extends Component {
         return(
             <div>
                 {/*Render Different Component based on Route*/}
+
                 <Route path="/" component={Login}/>
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
                 <Route path="/createquiz" component={CreateQuiz}/>
                	<Route path="/selectquiz" component={QuizSelection}/>
                 <Route path="/assignment" component={Assignment}/>
                 <Route path="/displayquizes" component={DisplayQuiz}/>
+                
+            
+                <Route path="/signup" component={SignUp}/>
+                    
+                
             </div>
         )
     }
