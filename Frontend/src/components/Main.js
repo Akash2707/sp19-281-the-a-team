@@ -7,8 +7,6 @@ import CreateQuiz from './CreateQuiz/CreateQuiz';
 import AttemptQuiz from './AttemptQuiz/AttemptQuiz';
 import QuizList from './QuizList/QuizList';
 import Navigation from './Navigation/Navigation';
-import UserScoreBoard from './UserScoreBoard/UserScoreBoard';
-import AdminScoreBoard from './AdminScoreBoard/AdminScoreBoard';
 
 //Create a Main Component
 class Main extends Component {
@@ -20,8 +18,6 @@ class Main extends Component {
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
                 <Route path="/quizlist" component={QuizList}/>
                 <Route path="/" component={Navigation}/>
-                <Route path="/scoreboard" component={UserScoreBoard}/>
-                <Route path="/listscore" component={AdminScoreBoard}/>
                
             </div>
         )
