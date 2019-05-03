@@ -91,10 +91,11 @@ class CreateQuizz extends Component {
                 <br />
                 <div className="container">
 
-                    <h2 className="quiz-heading">One word Quiz Creation</h2>
+                    <h2 className="quiz-heading" style={{margin:"10px 0px 25px 0px"}}> Quiz</h2>
                     <div style={{ width: "70%", "margin": "0 auto" }}>
                         <form onSubmit={this.quizCreateHandler}>
-                            <div className="form-group">
+                            <div className="form-group ">
+                            
                                 <div className="title">
                                     <input type="text" class="form-control" onChange={this.handleChange} required name={"quizTitle"} placeholder="Enter Quiz Title" />
                                 </div>

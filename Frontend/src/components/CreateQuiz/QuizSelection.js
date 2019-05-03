@@ -7,28 +7,28 @@ class QuizSelection extends Component {
                 <br />
                 <div className="container">
 
-                    <h2 className="quiz-heading">Select the type of the quiz you wish to create :</h2><br />
-
-                    <form>
-                        <div className="col-md-12 form-group">
-                            <div className="selectquiz">
-                                <button class="btn btn-success btn-lg selection" type="submit" onClick={() => {
+                    <h2 className="quiz-heading">Type Selection</h2><br />
+                    <div className="col-md-12" >
+                    
+                        <div className="col-md-12" style={{display: "inline-block"}}>
+                            <div className="col-md-6 selectquiz">
+                                <button class="btn btn-success btn-lg selection square" type="submit" onClick={() => {
                                     this.props.history.push({
                                         pathname: "/createquiz"
                                     })
-                                }}>One Word Quiz</button>
+                                }}>Quiz</button>
                             </div>
-                        </div><br />
-                        <div className="col-md-12 form-group">
-                            <div className="selectquiz">
-                                <button class="btn btn-success btn-lg selection" type="submit" onClick={() => {
+                            <div className=" col-md-3 selectquiz">
+                                <button class="btn btn-success btn-lg selection square" type="submit" onClick={() => {
                                     this.props.history.push({
                                         pathname: "/assignment"
                                     })
                                 }}>Assignment</button>
                             </div>
                         </div>
-                    </form>
+                        
+                    
+                    </div>
                 </div>
             </div>
         )

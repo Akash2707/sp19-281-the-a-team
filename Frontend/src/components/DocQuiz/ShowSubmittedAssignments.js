@@ -121,14 +121,37 @@ class ShowSubmittedAssignments extends Component {
                           }
                 return (
                   <div>
-                    <tr>
-                        <td>{submission.username}</td>
-                        <td>{submission.time}</td>
-                        <td><button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button></td>
+                      
+                    <tr >
+                        <td >{submission.username}</td>
+                        <td ></td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td> 
+                        <td >{submission.time}</td>
+                        <td ></td>
+                        <td ></td> 
+                        <td ></td>
+                        <td ></td> 
+                        <td ><button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button></td>
                     </tr>
                     <tr>
                       {fileDisplay}
                     </tr>
+                   
                     </div>
                 )
             })
@@ -140,12 +163,11 @@ class ShowSubmittedAssignments extends Component {
                 <div className="container">
 
                     <h2 className="quiz-heading">Assignments</h2>
-                    <table class="table">
+                    <table class="table" style={{textAlign:"left"}}>
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">UserName</th>
-                                <th scope="col">Time</th>
-                                <th scope="col"></th>
+                                
                             </tr>
                         </thead>
                         <tbody>

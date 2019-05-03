@@ -8,6 +8,10 @@ import ShowAssignments from './DocQuiz/ShowAssignments';
 import ShowSubmittedAssignments from './DocQuiz/ShowSubmittedAssignments';
 import CreateQuiz from './CreateQuiz/CreateQuiz';
 import AttemptQuiz from './AttemptQuiz/AttemptQuiz';
+import QuizList from './QuizList/QuizList';
+import Navigation from './Navigation/Navigation';
+import UserScoreBoard from './UserScoreBoard/UserScoreBoard';
+import AdminScoreBoard from './AdminScoreBoard/AdminScoreBoard';
 import QuizSelection from './CreateQuiz/QuizSelection';
 import Assignment from './CreateQuiz/Assignment';
 import DisplayQuiz from './AdminQuizDisplay/QuizDisplay';
@@ -21,6 +25,11 @@ class Main extends Component {
 
                 <Route path="/login" component={Login}/>
                 <Route path="/attemptquiz" component={AttemptQuiz}/>
+                <Route path="/quizlist" component={QuizList}/>
+                <Route path="/" component={Navigation}/>
+                <Route path="/scoreboard" component={UserScoreBoard}/>
+                <Route path="/listscore" component={AdminScoreBoard}/>
+               
                 <Route path="/submitassignment" component={DocQuiz}/>
                 <Route path="/getassignments" component={ShowAssignments}/>
                 <Route path="/getsubmissions" component={ShowSubmittedAssignments}/>

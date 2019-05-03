@@ -6,6 +6,8 @@ body {
 
 .container{
   width: 100%;
+  margin-top: 50px;
+  
 }
 
 .question{
@@ -28,7 +30,7 @@ body {
 
 .quiz-heading{
   font-size: 40px;
-  color:#0c058e;
+  color:#087191;
   margin:10px;
   text-align:center;
 }
@@ -37,11 +39,43 @@ body {
   margin:20px;
 }
 
+/* .selectquiz{
+  width: 500px;
+  margin-top:20px;
+
+} */
+
+.scoreboard{
+  font-size: 28px;
+  color:#7a0925;
+}
+
+
 .selection{
   width:400px;
 }
 
 .selectquiz{
-  margin:20px;
+  margin-top: 20px;
+  margin-left: 40px;
   text-align:center;
+}
+
+.square{
+  width: 130px;
+  height: 130px;
+  background-color: #343A40;
+  color: #FFFFFF;
+  font-size: 20px;
+}
+
+.square1{
+  width: 180px;
+  height: 100px;
+  background-color: #343A40;
+  color: #FFFFFF;
+  font-size: 20px;
+  border-radius: 10px;
+  text-align:center;
+  margin: 50px 0px 20px 0px;
 }

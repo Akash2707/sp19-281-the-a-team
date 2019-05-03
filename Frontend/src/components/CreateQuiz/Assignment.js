@@ -77,7 +77,7 @@ class Assignment extends Component {
                 <br />
                 <div className="container">
 
-                    <h2 className="quiz-heading">Quiz Creation with Attachments</h2>
+                    <h2 className="quiz-heading" style={{margin:"10px 0px 25px 0px"}}>Assignment</h2>
                     <div style={{ width: "70%", "margin": "0 auto" }}>
                         <form onSubmit={this.quizCreateHandler}>
                             <div style={{ width: "60%", "margin": "0 auto" }}>
