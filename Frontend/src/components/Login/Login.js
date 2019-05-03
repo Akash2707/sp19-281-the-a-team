@@ -73,8 +73,8 @@ function SignIn(props) {
     axios.post(url, payload)
     .then((res) => {
       console.log(res);
-      setAuth(true);
       localStorage.setItem("username", payload.Username);
+      setAuth(true);
     })
     .catch((err)=>{
       console.log(err);
@@ -84,9 +84,9 @@ function SignIn(props) {
 
   if (auth) {
     if (localStorage.getItem('username') == 'admin'){
-      return (<Redirect to="/displayquizes"/>)
+      return (<Redirect to="/selectquiz"/>)
     }else{
-      return (<Redirect to="/getassignments"/>)
+      return (<Redirect to="/quizlist"/>)
     }
   }
 

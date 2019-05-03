@@ -21,10 +21,13 @@ import (
 // MongoDB Config
 // to create new collection: connect using mongo shell: 
 // mongo ds145356.mlab.com:45356/quizzbox -u admin -p admin123
-var mongodb_server = "localhost:27017"
+var mongodb_server = "52.37.128.85:27017"
+var mongodb_server_1 = "52.25.120.104:27017"
 var mongodb_database = "quizzbox"
 var mongodb_collection = "oneWordQuiz"
 var mongodb_collection_1 = "quizAnswers"
+var mongodb_username = "admin"
+var mongodb_password = "admin123"
 
 // NewServer configures and returns a Server.
 func NewServer() *negroni.Negroni {
@@ -71,6 +74,12 @@ func getQuizHandler(formatter *render.Render) http.HandlerFunc {
 		if err != nil {
 			panic(err)
 		}
+		err = session.DB(mongodb_database).Login(mongodb_username, mongodb_password)
+		if err != nil {
+			message := struct {Message string}{"Some error occured while login to database!!"}
+			formatter.JSON(w, http.StatusInternalServerError, message)
+			return
+		}
 		defer session.Close()
 		session.SetMode(mgo.Monotonic, true)
 
@@ -94,14 +103,37 @@ func postAnswerHandler(formatter *render.Render) http.HandlerFunc {
         // info.QuizID = uuid.String()
         // Open MongoDB Session
         //session, err := mgo.Dial(mongodb_server)
-        session, err := mgo.Dial(mongodb_server)
+        session, err := mgo.Dial(mongodb_server_1)
         if err != nil {
             panic(err)
-        }
-        defer session.Close()
+		}
+		err = session.DB(mongodb_database).Login(mongodb_username, mongodb_password)
+		if err != nil {
+			message := struct {Message string}{"Some error occured while login to database!!"}
+			formatter.JSON(w, http.StatusInternalServerError, message)
+			return
+		}
+		defer session.Close()
+		
         session.SetMode(mgo.Monotonic, true)
 		c := session.DB(mongodb_database).C(mongodb_collection_1)
-		cc := session.DB(mongodb_database).C(mongodb_collection)
+
+
+		session1, err := mgo.Dial(mongodb_server)
+        if err != nil {
+            panic(err)
+		}
+		err = session1.DB(mongodb_database).Login(mongodb_username, mongodb_password)
+		if err != nil {
+			message := struct {Message string}{"Some error occured while login to database!!"}
+			formatter.JSON(w, http.StatusInternalServerError, message)
+			return
+		}
+		defer session1.Close()
+		
+		session1.SetMode(mgo.Monotonic, true)
+		
+		cc := session1.DB(mongodb_database).C(mongodb_collection)
 		fmt.Println(info)
 		
 		var ans answerlist
@@ -147,9 +179,15 @@ func scoreBoardHandler(formatter *render.Render) http.HandlerFunc {
 		var userName string = params["userName"]
 		fmt.Println("Inside scoreboard function")
 		fmt.Println(userName)
-		session, err := mgo.Dial(mongodb_server)
+		session, err := mgo.Dial(mongodb_server_1)
 		if err != nil {
 			panic(err)
+		}
+		err = session.DB(mongodb_database).Login(mongodb_username, mongodb_password)
+		if err != nil {
+			message := struct {Message string}{"Some error occured while login to database!!"}
+			formatter.JSON(w, http.StatusInternalServerError, message)
+			return
 		}
 		defer session.Close()
 		session.SetMode(mgo.Monotonic, true)
@@ -170,9 +208,15 @@ func adminScoreHandler(formatter *render.Render) http.HandlerFunc {
 		var quizID string = params["quizID"]
 		fmt.Println("Inside scoreboard function")
 		fmt.Println(quizID)
-		session, err := mgo.Dial(mongodb_server)
+		session, err := mgo.Dial(mongodb_server_1)
 		if err != nil {
 			panic(err)
+		}
+		err = session.DB(mongodb_database).Login(mongodb_username, mongodb_password)
+		if err != nil {
+			message := struct {Message string}{"Some error occured while login to database!!"}
+			formatter.JSON(w, http.StatusInternalServerError, message)
+			return
 		}
 		defer session.Close()
 		session.SetMode(mgo.Monotonic, true)

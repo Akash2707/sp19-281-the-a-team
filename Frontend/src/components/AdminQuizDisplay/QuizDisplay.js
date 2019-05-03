@@ -77,7 +77,7 @@ class QuizDisplay extends Component {
                             <td>{name}</td>
                             <td><button className="btn btn-dark" onClick={() => {
                                 this.props.history.push({
-                                    pathname: "/getscores",
+                                    pathname: "/listscore",
                                     state: {
                                         quizId: quiz.quizID
                                     }
@@ -122,9 +122,9 @@ class QuizDisplay extends Component {
 
                 <br />
                 <div className="container">
-                    <h2 className="quiz-heading">Quizzes and Assignments Created </h2><br /><br />
+                    <h2 className="quiz-heading">Dashboard</h2><br /><br />
                     <div className="col-md-6" >
-                        <h4 className="quiz-heading" style={{ fontSize: "20px" }}>One word Quizzes</h4>
+                        <h4 className="quiz-heading" style={{ fontSize: "30px" , color:"#04c4d6"}}>Quiz</h4>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
@@ -136,7 +136,7 @@ class QuizDisplay extends Component {
                         </table>
                     </div>
                     <div className="col-md-6" >
-                        <h4 className="quiz-heading" style={{ fontSize: "20px" }}> Assignments </h4>
+                        <h4 className="quiz-heading" style={{ fontSize: "30px", color:"#04c4d6"}}> Assignment</h4>
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>

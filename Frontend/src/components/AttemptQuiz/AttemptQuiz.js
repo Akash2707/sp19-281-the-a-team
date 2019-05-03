@@ -105,7 +105,7 @@ class AttemptQuiz extends Component{
             quizID:  this.state.quizID,
             quizName:this.state.quizName,
             time:    date,
-            username: "pranali"
+            username: localStorage.getItem('username')
         }
 
         axios.post('http://localhost:3000/postanswer', data)

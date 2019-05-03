@@ -89,7 +89,7 @@ function SignUp(props) {
 
   }
   if (auth) {
-    return (<Redirect to="/getassignments"/>)
+    return (<Redirect to="/quizlist"/>)
   }
   return (
     <main className={classes.main}>

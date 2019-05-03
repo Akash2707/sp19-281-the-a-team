@@ -74,8 +74,8 @@ class ShowAssignments extends Component {
                 <br />
                 <div className="container">
 
-                    <h2 className="quiz-heading">Assignments</h2>
-                    <table class="table">
+                    <h2 className="quiz-heading" style={{marginBottom:"50px"}}>Assignments</h2>
+                    <table class="table" style={{fontSize:"15px"}}>
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Name</th>

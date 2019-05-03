@@ -66,7 +66,7 @@ class DocQuiz extends Component {
         var date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
         formData.append('pdf', this.state.pdf);
         formData.append('assignmentId', this.state.assignmentId);
-        formData.append('username', "patelharsh9999@gmail.com");
+        formData.append('username', localStorage.getItem('username'));
         formData.append('time', date);
 
         axios.post("http://52.33.173.178:3000/submitassignment", formData)

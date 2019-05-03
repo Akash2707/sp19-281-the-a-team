@@ -18,7 +18,7 @@ class UserScoreBoard extends Component{
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://localhost:3000/scoreboard/' + 'pranali')
+        axios.get('http://localhost:3000/scoreboard/' + localStorage.getItem('username'))
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {

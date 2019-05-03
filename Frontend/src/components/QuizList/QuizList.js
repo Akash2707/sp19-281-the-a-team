@@ -58,8 +58,8 @@ render() {
     let quizs = this.state.quizlist.map(quiz => {
 
         return (
-            <div className="col-md-8">
-                 <button className="col-md-6 btn btn-outline-secondary btn-lg selectquiz" type="submit" onClick={() => { this.selectQuiz(quiz) }} style={{color:"#000000", fontSize:"20px", fontWeight:"bold"}}>  {quiz.quizName} </button>
+            <div className="col-md-3">
+                 <button className="btn btn-outline-success btn-lg  square1" type="submit" onClick={() => { this.selectQuiz(quiz) }} style={{color:"#FFFFFF", fontSize:"20px", fontWeight:"bold"}}>  {quiz.quizName} </button>
             </div>
         )
     })
@@ -69,9 +69,9 @@ render() {
                 <br/>
                 <div>
                     <h2 className="quiz-heading">Select Quiz</h2>
-
+                    <div className="col-md-12">
                     {quizs}
-                     
+                    </div> 
                 </div>
             </div>
         )
