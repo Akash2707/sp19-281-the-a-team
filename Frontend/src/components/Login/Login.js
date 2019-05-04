@@ -69,7 +69,7 @@ function SignIn(props) {
     console.log(username, password);
 
     let payload = {"Username": username, "Password":password};
-    const url = "http://13.52.136.2:3001/login";
+    const url = "http://gobalancer-609317198.us-west-1.elb.amazonaws.com:80/login";
     axios.post(url, payload)
     .then((res) => {
       console.log(res);

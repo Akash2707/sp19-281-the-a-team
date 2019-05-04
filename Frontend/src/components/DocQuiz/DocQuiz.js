@@ -69,19 +69,12 @@ class DocQuiz extends Component {
         formData.append('username', localStorage.getItem('username'));
         formData.append('time', date);
 
-        axios.post("http://52.33.173.178:3000/submitassignment", formData)
+        axios.post("http://35.192.223.198:3000/submitassignment", formData)
             .then((response) => {
                 console.log("Status Code : ", response);
-                if (response.status === 200) {
-                    this.setState({
-                        pdfMessage: response.data,
-                        submitted: true
-                    })
-                } else {
-                    this.setState({
-                        pdfMessage: response.data.message
-                    })
-                }
+                this.setState({
+                  submitted: true
+                })
             }).catch((error) => {
                 console.log(error.response.data);
                 this.setState({

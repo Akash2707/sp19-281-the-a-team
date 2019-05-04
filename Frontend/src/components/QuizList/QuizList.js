@@ -18,7 +18,7 @@ class QuizList extends Component{
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://localhost:3000/quizlist')
+        axios.get('http://40.85.147.13:3000/quizlist')
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {
@@ -43,7 +43,7 @@ class QuizList extends Component{
 
 
     selectQuiz(quiz) {
-        
+
         let quizPage = null
         quizPage = this.props.history.push({
             pathname: "/attemptquiz",
@@ -51,7 +51,7 @@ class QuizList extends Component{
                 quiz: quiz
             }
         })
-    
+
 }
 
 render() {
@@ -65,13 +65,13 @@ render() {
     })
 
         return(
-            <div className="container"> 
+            <div className="container">
                 <br/>
                 <div>
                     <h2 className="quiz-heading">Select Quiz</h2>
                     <div className="col-md-12">
                     {quizs}
-                    </div> 
+                    </div>
                 </div>
             </div>
         )

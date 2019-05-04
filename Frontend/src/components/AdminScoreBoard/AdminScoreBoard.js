@@ -24,7 +24,7 @@ class AdminScoreBoard extends Component {
             })
             quizId = this.props.location.state.quizId
             //make a post request with the user data
-            axios.get('http://localhost:3000/viewscore/' + quizId)
+            axios.get('http://40.85.147.13:3000/viewscore/' + quizId)
                 .then(response => {
                     console.log("Status Code : ", response);
                     if (response.status === 200) {

@@ -57,7 +57,7 @@ function SignUp(props) {
   const [errm, setErrm] = useState("");
   const [auth, setAuth] = useState(false);
 
-  const url = "http://13.52.136.2:3001/signup"
+  const url = "http://gobalancer-609317198.us-west-1.elb.amazonaws.com:80/signup"
   function handleName(e) {
     setName(e.target.value);
   }

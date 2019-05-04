@@ -59,7 +59,7 @@ class ShowSubmittedAssignments extends Component {
               assignmentId: this.props.location.state.assignmentId,
           })
           assignmentID = this.props.location.state.assignmentId
-          axios.get('http://52.33.173.178:3000/getsubmissions/' + assignmentID )
+          axios.get('http://35.192.223.198:3000/getsubmissions/' + assignmentID )
               .then(response => {
                   console.log("Status Code : ", response);
                   if (response.status === 200) {
@@ -121,61 +121,47 @@ class ShowSubmittedAssignments extends Component {
                           }
                 return (
                   <div>
-                      
-                    <tr >
-                        <td >{submission.username}</td>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td> 
-                        <td >{submission.time}</td>
-                        <td ></td>
-                        <td ></td> 
-                        <td ></td>
-                        <td ></td> 
-                        <td ><button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button></td>
-                    </tr>
-                    <tr>
+                  <div className="col-md-11">
+                      <div className="col-md-5 boxrow">
+                          <span>{submission.username}</span>
+                      </div>
+                      <div className="col-md-3 boxrow">
+                          <span>{submission.time}</span>
+                      </div>
+                      <div className="col-md-3 boxrow">
+                          <button className="btn btn-dark" onClick={() => { this.viewAssignment(submission) }}>View Submission</button>
+                      </div>
+                  </div>
+                  <div className="col=md=12">
                       {fileDisplay}
-                    </tr>
-                   
-                    </div>
+                  </div>
+                </div>
                 )
             })
         }
 
         return (
-            <div>
-                <br />
+
                 <div className="container">
 
                     <h2 className="quiz-heading">Assignments</h2>
-                    <table class="table" style={{textAlign:"left"}}>
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">UserName</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {submissions}
-                        </tbody>
-                    </table>
+                    <div className="col-md-12">
+                      <div className="col-md-11 blackbox">
+                        <div className="col-md-5">
+                          <span>User-Name</span>
+                        </div>
+                        <div className="col-md-3">
+                         <span>Date</span>
+                       </div>
+                       <div className="col-md-3">
+                         <span>View</span>
+                      </div>
+                      </div>
+                      {submissions}
+
                 </div>
-            </div>
+                </div>
+
         )
     }
 }

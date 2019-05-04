@@ -31,7 +31,7 @@ class ShowAssignments extends Component {
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://52.33.173.178:3000/getassignments')
+        axios.get('http://35.192.223.198:3000/getassignments')
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {
@@ -61,10 +61,12 @@ class ShowAssignments extends Component {
             assignments = this.state.assignments.map(assignment => {
 
               return (
+
                   <tr>
                       <td>{assignment.assignmentName}</td>
                       <td><button className="btn btn-dark" onClick={() => { this.submitAssignment(assignment) }}>Submit Assignment</button></td>
                   </tr>
+                
               )
             })
         }

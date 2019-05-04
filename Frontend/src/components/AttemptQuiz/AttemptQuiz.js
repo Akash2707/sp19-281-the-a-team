@@ -78,8 +78,8 @@ class AttemptQuiz extends Component{
                 question5: this.props.location.state.quiz.question5,
                 quizID: this.props.location.state.quiz.quizID,
                 quizName: this.props.location.state.quiz.quizName,
-                
-                
+
+
             })
 
 
@@ -108,7 +108,7 @@ class AttemptQuiz extends Component{
             username: localStorage.getItem('username')
         }
 
-        axios.post('http://localhost:3000/postanswer', data)
+        axios.post('http://40.85.147.13:3000/postanswer', data)
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {
@@ -152,7 +152,7 @@ class AttemptQuiz extends Component{
                             <div className="col-md-12 answer">
                                     <input  onChange={this.ans1Handler} type="text" class="form-control" name="ans1" placeholder="Answer"/>
                             </div>
-                        </div> 
+                        </div>
                         <div className="col-md-12 form-group">
                             <div className="col-md-12 question" >
                                 {this.state.question2}
@@ -184,16 +184,16 @@ class AttemptQuiz extends Component{
                             <div className="col-md-12 answer">
                                     <input onChange={this.ans5Handler} type="text" class="form-control" name="ans5" placeholder="Answer"/>
                             </div>
-                        </div>  
+                        </div>
 
                         <div className="col-md-12 form-group">
                             <div className="submitquiz">
                                 <button class="btn btn-success btn-lg" type="submit" onClick={this.submitQuiz}>Submit</button>
-                            </div> 
-                        </div> 
+                            </div>
+                        </div>
                    </form>
                    </div>
-                    
+
                 </div>
             </div>
         )

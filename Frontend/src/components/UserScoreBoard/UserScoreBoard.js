@@ -13,12 +13,12 @@ class UserScoreBoard extends Component{
             errorMessage: ''
 
         }
-        
+
     }
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://localhost:3000/scoreboard/' + localStorage.getItem('username'))
+        axios.get('http://40.85.147.13:3000/scoreboard/' + localStorage.getItem('username'))
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {
@@ -47,7 +47,7 @@ class UserScoreBoard extends Component{
         let scorelist = this.state.scores.map(score => {
 
             return (
-            
+
                 <div className="col-md-12">
                 <hr/>
                 <div className="col-md-5">
@@ -65,7 +65,7 @@ class UserScoreBoard extends Component{
         })
 
         return(
-            <div className="container"> 
+            <div className="container">
                 <br/>
                 <div>
                     <h2 className="quiz-heading">Score Board</h2>
@@ -85,10 +85,10 @@ class UserScoreBoard extends Component{
                       </div>
 
                     {scorelist}
-                      
+
                     </div>
-                    
-                     
+
+
                 </div>
             </div>
         )
