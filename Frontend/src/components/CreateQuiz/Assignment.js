@@ -46,7 +46,7 @@ class Assignment extends Component {
             }
         }
         //make a post request with the user data
-        axios.post('http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/assignment', data, headers)
+        axios.post('https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/admin/assignment', data, headers)
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {

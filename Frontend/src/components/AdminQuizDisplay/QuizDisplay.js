@@ -24,7 +24,7 @@ class QuizDisplay extends Component {
 
         // axios.defaults.withCredentials = true;
 
-        axios.get("http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/getonewordquiz")
+        axios.get("https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/admin/getonewordquiz")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)
@@ -42,7 +42,7 @@ class QuizDisplay extends Component {
                 })
             });
 
-        axios.get("http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/getassignment")
+        axios.get("https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/admin/getassignment")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)
