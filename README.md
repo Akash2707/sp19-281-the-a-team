@@ -21,3 +21,25 @@ Quizzbox is a web application where any organization can create a quiz of their 
 |Quizz Creation                              | Aakash    |
 |Taking Quiz and Result (Fill in the blanks) | Pranali   |
 |Taking Quiz and View Answers (PDFs)         | Harsh     |
+
+## Architecture : 
+
+![Architecture](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Architecture.png)
+
+## Link to Documentation : 
+
+[Documentation](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Documentation.md)
+
+## Link to Journal :
+
+[Journal](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Dev_Journal.md)
+
+## Links to Deployments : 
+
+* [AWS EKS](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/AWS%20EKS%20documentation.md)
+* [GKE](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/GKE%20Documentation.md)
+* [AKS](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Azure%20Kubernetes%20Service%20Deployment.md)
+
+## Link to API Documentation :
+
+[API Documentation](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/API%20Documentation.md)
