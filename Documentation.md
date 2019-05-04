@@ -21,6 +21,7 @@ class learning, fun quizzes and many more.
 ### Frontend - User/Admin:  
 User will interact with appliction from frontend. Request from here will be directed to Amazon API Gateway. API gateway will
 interact with microservices.
+**Technology**: React, HTML, CSS. 
 
 ### GoAPI: 
 GOAPI works as microservies. 
@@ -33,8 +34,7 @@ GOAPI works as microservies.
 Load balancer is used to distribute traffic of User microservice to scale application horizontally.
 
 ### Amazon API Gateway:
-Amazon API Gateway is used to redirect request from user to different microservices. It enables user to retrieve data from mutiple
-microservices within single round trip.
+Amazon API Gateway is used to redirect request from user to different microservices. It enables user to retrieve data from mutiple microservices within single round trip.
 
 ### Mongo Shard Clusters:
 We have 3 mongo shard cluster. Quiz, assignment and admin each are using one mongo shard clusters. Every mongo shard cluster
