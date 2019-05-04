@@ -54,7 +54,7 @@ Quiz Creation API...
   - finished go backend api for login and signup
   
 ## Week 3 (04/27/2019 - 05/03/2019)
-### Team meeting #1
+### Team meeting #3
 - Integrated all the components together
 - Host froentend on Heruku
 - Debuging and polishing
