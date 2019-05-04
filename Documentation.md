@@ -75,5 +75,34 @@ each record. We had shared mongo cluster to partition data.
 
 <br/>
 
+## Team Contribution:
 
+### Ye Mei:
+* 2 GoAPI for login and signup of user and admin.
+* Frontend for signup and login.
+* Deployed user microservice in 3 docker container replicas with load balancer.
+* Mongo Cluster with master and slave nodes.
+* Deployed Frontend in Heroku.
 
+### Harsh Patel:
+* 3 GoAPI for Assignment Module.
+* Frontend for assignment attempt and dashboard
+* S3 bucket integration for storing and retrieving PDF.
+* Deployed assignment microservice in Google Kubernetes Service.
+* Created Amazon API Gateway.
+* Mongo Shard Cluster
+* Schema Planning
+
+### Pranali Bhavsar:
+* 4 GoAPI for Quiz MOdule.
+* Developed frontend for attempt quiz, score boards and quiz selection.
+* Quiz microservice deployment in Azure Kubernetes Service.
+* Mongo Shard Cluster
+* Schema Planning
+
+### Aakash Thakkar:
+* 4 GoAPI for Quiz Creation Module.
+* Frontend for quiz and assignment creation.
+* Deployed Quiz Module in Elastic Kubernetes Service.
+* Mongo Shard Cluster.
+* Schema Planning
