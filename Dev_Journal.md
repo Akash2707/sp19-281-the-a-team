@@ -39,6 +39,7 @@
   * Everyone had quite good skills in frontend so, did not faced any major problem.
   * Integration of frontend took a while although.
   </br>
+  
 ## Week 2 (04/20/2019 - 04/26/2019)
 ### Team meeting #2
   - Discussed backend API design.
@@ -62,6 +63,7 @@
   * Understanding working of GoAPI.
   * Debugging error in GoAPI.
   </br>
+  
 ## Week 3 (04/27/2019 - 05/03/2019)
 ### Team meeting #3
 - Integrated all the components together
