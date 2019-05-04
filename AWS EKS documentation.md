@@ -1,6 +1,6 @@
 ## AWS EKS Documentation.
 
-* I have used AWS Elastic kubernetes Service to deploy my admin backend.
+* I have used AWS Elastic Container Service for kubernetes (EKS) to deploy my admin backend.
 
 ### Below are the steps for EKS deployment:
 
@@ -12,7 +12,7 @@
   - Here we will allow EKS so that it will manage the clusters in our behalf and then Click : Next Permissions
   - Choose Next : Tags
   - Next : Review
-  - We can enter a unique name for our role, such as eksService role and then Create role.
+  - We can enter a unique name for our role, such as eksServiceRole and then Create role.
   
 * #### Now we will VPC for our cluster:
 
@@ -69,7 +69,113 @@
        
 ### Now we will begin creating the Cluster and Working Nodes:
        
-*#### Create our Amazon EKS Cluster:
+* #### Create our Amazon EKS Cluster:
+
+  - Open Amazon EKS console.
+  
+  - Choose Create Cluster.
+  
+  - On the Create Cluster Page fill the following information :
+    
+     - Cluster Name : Name of the cluster (admin_backend)
+     - Kubernetes Version : Your kubernetes version for that cluster.
+     - Role ARN : Here We will select the ARN Role that we created in the pre-requisite step (eksServiceRole)
+     - VPC : Here we will select the VPCID we marked down from CloudFormation of VPC.
+     - Subnets : Here we will select the Subnets we marked down from CloudFormation of VPC.
+     - Security Groups : Here we will select the Security Group we marked down from CloudFormation of VPC.
+     - Endpoint private acess: Disabled.
+     - Endpoint public access : Enable.
+     - Logging : You can have various logging features for your Cluster upon your desire.
+     - Now you can create the cluster.
+     
+  - On the Cluster Page if you select the name of your cluster you can see the details of newly creatrd cluster.
+  
+   ![EKS Cluster](Image)
+   
+   
+ * #### Create a kubeconif file with AWS CLI.
+  
+   - Check the version of AWS : 
+   
+          aws --version
+      
+   - Use the AWS CLI update-kubeconfig command to create or update your kubeconfig for your cluster.
+    
+          aws eks --region us-west-2 update-kubeconfig --name admin_backend
+          
+   - Here if you have created your cluster with root access permission and you gets an error for Denied Access then you need to obtain the access key and secret key for the root user and add them into .aws/credentials file.
+      
+   - Test the configuration : 
+   
+         kubectl get svc
+         
+* #### Launch and configure AWS EKS Worker Nodes:
+
+  - Wait until the cluster gets Active.
+  - Open AWS CloudFormation Console:
+  - From the Navigation Bar, select the region that supports Amazon EKS (Oregon).
+  - Choose Create Stack.
+  - Here we will Specify S3 image URL for Node group:  
+  
+    https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-02-11/amazon-eks-nodegroup.yaml
+  
+  - On the Specify Details Page, fill out the following configuration and then Click Next:
+  
+      - Stack Name : Choose any Stack Name that you wish to create (worker-groups)
+      - Cluster Name : We will enter the name of the EKS Clustert that we just created.
+      - ClusterControlPlaneSecurityGroup : Here we will select the Security Group we marked down from CloudFormation of VPC.
+      - NodeGroupName : Enter any name of your Node group,
+      - NodeAutoScalingGroupMinSize: Enter the minimum number nodes for your AutoScaling Group.
+      - NodeAutoScalingGroupDesiredCapacity: Enter the desired number nodes for your AutoScaling Group.
+      - NodeAutoScalingGroupMaxSize: Enter the maximum number nodes for your AutoScaling Group.
+      - NodeInstanceType: Choose an instance type for your worker nodes.
+      - NodeImageId For Oregon (us-west-2) :  ami-0923e4b35a30a5f53
+      - KeyName: KeyPair of your Availability Zone
+      - VpcId: Here we will select the VPCID we marked down from CloudFormation of VPC.
+      - Subnets : Here we will select the Subnets we marked down from CloudFormation of VPC.
+      
+   - On the Options Page Enter the Tag and Go Next.
+   - On the Review page, review your information, acknowledge that the stack might create IAM resources, and then choose Create.
+   - Once the stack is ready record the NodeInstanceRole from the outputs.
+   
+   ![EKS Stack Worker Group](Image)
+
+ * Now to enable worker nodes to join the cluster : 
+ 
+    - Download the Configuration map using following command : 
+    
+      curl -o aws-auth-cm.yaml https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2019-02-11/aws-auth-cm.yaml
+      
+    - Open the file and just update the rolearn: <ARN of instance role (not instance profile)> with rolearn : NodeInstanceRole from the output you recorded.
+    
+    - Apply the configuration : 
+    
+          kubectl apply -f aws-auth-cm.yaml
+     
+     - Check the status of the Node : 
+     
+            kubectl get nodes --watch
+      
+* #### After the Nodes are ready we will create the admin backend yaml file for deployment and service: 
+
+![Deployment yaml](Image)
+
+![Service yaml](Image)
+
+ * kubectl create -f quizzbox-deployment.yaml --save-config
+ * kubectl create -f quizzbox-service.yaml
+ 
+ * Check the status of the running pods and service: 
+ 
+    - kubectl get pods --all-namespaces -o wide
+    - get services --all-namespaces -o wide
+
+
+      
+      
+  
+     
+  
         
     
     
