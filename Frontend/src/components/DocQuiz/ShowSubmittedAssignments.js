@@ -59,7 +59,7 @@ class ShowSubmittedAssignments extends Component {
               assignmentId: this.props.location.state.assignmentId,
           })
           assignmentID = this.props.location.state.assignmentId
-          axios.get('http://35.192.223.198:3000/getsubmissions/' + assignmentID )
+          axios.get('https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/assignment/getsubmissions/' + assignmentID )
               .then(response => {
                   console.log("Status Code : ", response);
                   if (response.status === 200) {

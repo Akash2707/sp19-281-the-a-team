@@ -69,7 +69,7 @@ function SignIn(props) {
     console.log(username, password);
 
     let payload = {"Username": username, "Password":password};
-    const url = "http://gobalancer-609317198.us-west-1.elb.amazonaws.com:80/login";
+    const url = "https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/user/login";
     axios.post(url, payload)
     .then((res) => {
       console.log(res);

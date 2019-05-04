@@ -108,7 +108,7 @@ class AttemptQuiz extends Component{
             username: localStorage.getItem('username')
         }
 
-        axios.post('http://40.85.147.13:3000/postanswer', data)
+        axios.post('https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/quizz/postanswer', data)
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {

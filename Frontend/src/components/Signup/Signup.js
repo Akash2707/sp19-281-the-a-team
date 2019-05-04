@@ -57,7 +57,7 @@ function SignUp(props) {
   const [errm, setErrm] = useState("");
   const [auth, setAuth] = useState(false);
 
-  const url = "http://gobalancer-609317198.us-west-1.elb.amazonaws.com:80/signup"
+  const url = "https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/user/signup"
   function handleName(e) {
     setName(e.target.value);
   }
@@ -78,9 +78,8 @@ function SignUp(props) {
     axios.post(url, payload)
     .then((res) => {
       console.log(res);
+      localStorage.setItem("username", payload.Username);
       setAuth(true);
-
-
     })
     .catch((err)=>{
       console.log(err);

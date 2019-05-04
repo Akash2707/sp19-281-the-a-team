@@ -18,7 +18,7 @@ class QuizList extends Component{
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://40.85.147.13:3000/quizlist')
+        axios.get('https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/quizz/quizlist')
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {

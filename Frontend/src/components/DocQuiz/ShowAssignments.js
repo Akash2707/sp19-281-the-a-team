@@ -31,7 +31,7 @@ class ShowAssignments extends Component {
 
     componentDidMount() {
         //make a post request with the user data
-        axios.get('http://35.192.223.198:3000/getassignments')
+        axios.get('https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/assignment/getassignments')
             .then(response => {
                 console.log("Status Code : ", response);
                 if (response.status === 200) {
@@ -66,7 +66,7 @@ class ShowAssignments extends Component {
                       <td>{assignment.assignmentName}</td>
                       <td><button className="btn btn-dark" onClick={() => { this.submitAssignment(assignment) }}>Submit Assignment</button></td>
                   </tr>
-                
+
               )
             })
         }

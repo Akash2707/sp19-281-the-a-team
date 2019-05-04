@@ -69,7 +69,7 @@ class DocQuiz extends Component {
         formData.append('username', localStorage.getItem('username'));
         formData.append('time', date);
 
-        axios.post("http://35.192.223.198:3000/submitassignment", formData)
+        axios.post("https://7vtdp12dgc.execute-api.us-west-2.amazonaws.com/quizzbox/assignment/submitassignment", formData)
             .then((response) => {
                 console.log("Status Code : ", response);
                 this.setState({
