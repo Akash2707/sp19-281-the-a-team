@@ -25,13 +25,13 @@
   - On the Review page, create VPC
   _ Once the stack is created we will select the output of that stack from the console and we will record all the details such as VPCId, SubnetIds and Security Group.
   
-  ![VPC Stack](Image)
+  ![VPC Stack](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Images_AWS-EKS/VPC%20stack.png)
   
 * #### After the stack is created we will add kubectl service for Amazon EKS
   
     - You can download the Amazon EKS-vended kubectl binary for your cluster's Kubernetes version from Amazon S3:  
     
-    curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/darwin/amd64/kubectl
+          curl -o kubectl https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/darwin/amd64/kubectl
     
     - Apply permission:  
           
@@ -49,23 +49,23 @@
 
     - Download the Amazon EKS-vended aws-iam-authenticator binary from Amazon S3:
         
-        curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/darwin/amd64/aws-iam-authenticator
+          curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.12.7/2019-03-27/bin/darwin/amd64/aws-iam-authenticator
         
     - Add the permissions:
     
-        chmod +x ./aws-iam-authenticator
+          chmod +x ./aws-iam-authenticator
         
     - Now we will copy the binary to $PATH:
     
-        mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
+          mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
         
     - Add your path to $HOME/bin:
     
-        echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
+          echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
         
     - Test:
       
-       aws-iam-authenticator help
+          aws-iam-authenticator help
        
 ### Now we will begin creating the Cluster and Working Nodes:
        
@@ -90,7 +90,7 @@
      
   - On the Cluster Page if you select the name of your cluster you can see the details of newly creatrd cluster.
   
-   ![EKS Cluster](Image)
+   ![EKS Cluster](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Images_AWS-EKS/cluster.png)
    
    
  * #### Create a kubeconif file with AWS CLI.
@@ -138,7 +138,7 @@
    - On the Review page, review your information, acknowledge that the stack might create IAM resources, and then choose Create.
    - Once the stack is ready record the NodeInstanceRole from the outputs.
    
-   ![EKS Stack Worker Group](Image)
+   ![EKS Stack Worker Group](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Images_AWS-EKS/Workergroups.png)
 
  * Now to enable worker nodes to join the cluster : 
  
@@ -158,9 +158,9 @@
       
 * #### After the Nodes are ready we will create the admin backend yaml file for deployment and service: 
 
-![Deployment yaml](Image)
+![Deployment yaml](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Images_AWS-EKS/quizzbox-deployment.png)
 
-![Service yaml](Image)
+![Service yaml](https://github.com/nguyensjsu/sp19-281-the-a-team/blob/master/Images_AWS-EKS/quizzbox-service.png)
 
  * kubectl create -f quizzbox-deployment.yaml --save-config
  * kubectl create -f quizzbox-service.yaml
