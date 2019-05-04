@@ -24,7 +24,7 @@ class QuizDisplay extends Component {
 
         // axios.defaults.withCredentials = true;
 
-        axios.get("http://34.210.207.21:3000/getonewordquiz")
+        axios.get("http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/getonewordquiz")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)
@@ -42,7 +42,7 @@ class QuizDisplay extends Component {
                 })
             });
 
-        axios.get("http://34.210.207.21:3000/getassignment")
+        axios.get("http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/getassignment")
             .then(response => {
                 if (response.status == 200) {
                     console.log("status" + response.status)

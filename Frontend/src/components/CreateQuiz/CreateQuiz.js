@@ -22,7 +22,7 @@ class CreateQuizz extends Component {
             ans5: "",
             message: "",
             flag : ""
-            
+
         }
         //Bind the handlers to this class
         this.handleChange = this.handleChange.bind(this);
@@ -60,7 +60,7 @@ class CreateQuizz extends Component {
             }
         }
         //make a post request with the user data
-        axios.post('http://34.210.207.21:3000/createquiz', data, headers )
+        axios.post('http://a40766acc6e0b11e9926d06aa54c672c-474657251.us-west-2.elb.amazonaws.com/createquiz', data, headers )
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {
@@ -95,7 +95,7 @@ class CreateQuizz extends Component {
                     <div style={{ width: "70%", "margin": "0 auto" }}>
                         <form onSubmit={this.quizCreateHandler}>
                             <div className="form-group ">
-                            
+
                                 <div className="title">
                                     <input type="text" class="form-control" onChange={this.handleChange} required name={"quizTitle"} placeholder="Enter Quiz Title" />
                                 </div>
@@ -146,7 +146,7 @@ class CreateQuizz extends Component {
                                     <button class="btn btn-success btn-lg" type="submit">Create</button>
                                 </div>
                             </div>
-                            {this.state.message} 
+                            {this.state.message}
                         </form>
                     </div>
                 </div>
